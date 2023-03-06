@@ -1,12 +1,12 @@
-class Todos_Model {
+class TodosModel {
   int? userId;
   int? id;
   String? title;
   bool? completed;
 
-  Todos_Model({this.userId, this.id, this.title, this.completed});
+  TodosModel({this.userId, this.id, this.title, this.completed});
 
-  Todos_Model.fromJson(Map<String, dynamic> json) {
+  TodosModel.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
     id = json['id'];
     title = json['title'];

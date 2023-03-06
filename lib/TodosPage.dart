@@ -1,24 +1,24 @@
-import 'package:bloc_2/Todos_Repo.dart';
-import 'package:bloc_2/todos_bloc.dart';
+import 'package:bloc_2/Bloc/TodosBloc.dart';
+import 'package:bloc_2/TodosApi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'Todos_Model.dart';
+import 'TodosModel.dart';
 
-class Todos_Page extends StatefulWidget {
-  const Todos_Page({Key? key}) : super(key: key);
+class TodosPage extends StatefulWidget {
+  const TodosPage({Key? key}) : super(key: key);
 
   @override
-  State<Todos_Page> createState() => _Todos_PageState();
+  State<TodosPage> createState() => _TodosPageState();
 }
 
-class _Todos_PageState extends State<Todos_Page> {
+class _TodosPageState extends State<TodosPage> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => TodosBloc(Todos_Repo()),)
+          BlocProvider(create: (context) => TodosBloc(TodosApi()),)
         ],
         child: Scaffold(
           appBar: AppBar(
@@ -29,16 +29,16 @@ class _Todos_PageState extends State<Todos_Page> {
   }
 
   Widget blocApiCall() {
-    return BlocProvider(create: (context) => TodosBloc(Todos_Repo())..add(LoadTodosEvent()),
+    return BlocProvider(create: (context) => TodosBloc(TodosApi())..add(LoadTodosEvent()),
     child: BlocBuilder<TodosBloc,TodosState>(
       builder: (context, state) {
         if(state is TodosLodingState){
           return const Center(child: CircularProgressIndicator());
         };
         if(state is TodosSuccessState){
-          List<Todos_Model> model = state.todos;
+          List<TodosModel> list = state.todos;
           return ListView.builder(
-              itemCount: model.length,
+              itemCount: list.length,
               itemBuilder: (_, index) {
                 return Padding(
                   padding:
@@ -46,16 +46,16 @@ class _Todos_PageState extends State<Todos_Page> {
                   child: Card(
                       child: ListTile(
                           title: Text(
-                            model[index].userId.toString(),
+                            list[index].userId.toString(),
                             style: const TextStyle(color: Colors.black),
                           ),
-                          trailing: Text(model[index].completed.toString(),style: const TextStyle(color: Colors.black)),
+                          trailing: Text(list[index].completed.toString(),style: const TextStyle(color: Colors.black)),
                           subtitle: Text(
-                            model[index].title.toString(),
+                            list[index].title.toString(),
                             style: const TextStyle(color: Colors.black),
                           ),
                           leading: Text(
-                            model[index].id.toString(),
+                            list[index].id.toString(),
                             style: const TextStyle(color: Colors.black),
                           ),
                       )),

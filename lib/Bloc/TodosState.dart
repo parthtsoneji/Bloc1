@@ -1,4 +1,4 @@
-part of 'todos_bloc.dart';
+part of 'TodosBloc.dart';
 
 abstract class TodosState extends Equatable {}
 
@@ -13,7 +13,7 @@ class TodosLodingState extends TodosState {
 }
 
 class TodosSuccessState extends TodosState {
-  final List<Todos_Model> todos;
+  final List<TodosModel> todos;
   TodosSuccessState(this.todos);
   @override
   List<Object?> get props => [todos];
@@ -25,4 +25,5 @@ class TodosErrorState extends TodosState {
   @override
   List<Object?> get props => [error];
 }
+
 

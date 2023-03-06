@@ -1,4 +1,4 @@
-part of 'todos_bloc.dart';
+part of 'TodosBloc.dart';
 
 abstract class TodosEvent extends Equatable {
   const TodosEvent();
