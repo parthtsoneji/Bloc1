@@ -1,9 +1,9 @@
 import 'package:bloc_2/Bloc/TodosBloc.dart';
-import 'package:bloc_2/TodosApi.dart';
+import 'package:bloc_2/Service/TodosApi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'TodosModel.dart';
+import '../Model/TodosModel.dart';
 
 class TodosPage extends StatefulWidget {
   const TodosPage({Key? key}) : super(key: key);
